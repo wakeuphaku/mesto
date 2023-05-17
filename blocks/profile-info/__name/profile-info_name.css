@@ -1,4 +1,4 @@
-.profile__info_name {
+.profile-info__name {
   max-width: 294px;
 
   font-style: normal;
@@ -13,7 +13,7 @@
   overflow: hidden;
 }
 @media screen and (max-width: 767px) {
-  .profile__info_name {
+  .profile-info__name {
     font-size: 27px;
     line-height: 33px;
     text-align: center;

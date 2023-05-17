@@ -1,10 +1,10 @@
-let openPopupButton = document.querySelector('.profile__info_edit-button');
+let openPopupButton = document.querySelector('.profile-info__edit-button');
 let popupOpen = document.querySelector('.popup');
-let closePopupButton = document.querySelector('.popup__container_close-button');
+let closePopupButton = document.querySelector('.popup__close-button');
 let nameInput = document.querySelector('#name-input');
 let hobbyInput = document.querySelector('#hobby-input');
-let profileName = document.querySelector('.profile__info_name');
-let hobbyName = document.querySelector('.profile__info_hobby');
+let profileName = document.querySelector('.profile-info__name');
+let hobbyName = document.querySelector('.profile-info__hobby');
 let saveForm = document.querySelector('.popup__form');
 
 function closePopup(popup) {
