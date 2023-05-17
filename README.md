@@ -7,7 +7,7 @@
 
 **GitHub Pages**
 
-- [Ссылка на GitHub Pages](https://x3hunnit.github.io/russian-travel/)
+- [Ссылка на GitHub Pages](https://x3hunnit.github.io/mesto/)
 
 **Figma**
 
