@@ -1,0 +1,14 @@
+.element__block_like {
+  background-image: url(../../../../images/like.svg);
+  width: 22px;
+  height: 19px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.element__block_like:hover {
+  opacity: 0.5;
+}
+.element__block_like:active {
+  opacity: 1;
+  background-image: url(../../../../images/likeblack.svg);
+}

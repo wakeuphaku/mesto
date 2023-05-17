@@ -1,0 +1,21 @@
+.profile__info_edit-button {
+  background-color: black;
+  border: none;
+  max-width: 24px;
+  height: 24px;
+  margin-left: 18px;
+  align-self: end;
+  cursor: pointer;
+  padding: 0;
+  align-self: center;
+}
+.profile__info_edit-button:hover {
+  opacity: 0.6;
+}
+@media screen and (max-width: 767px) {
+  .profile__info_edit-button {
+    max-width: 18px;
+    height: 18px;
+    margin-left: 10px;
+  }
+}
