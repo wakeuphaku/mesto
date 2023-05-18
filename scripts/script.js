@@ -1,26 +1,18 @@
 let openPopupButton = document.querySelector('.profile-info__edit-button');
 let popupOpen = document.querySelector('.popup');
 let closePopupButton = document.querySelector('.popup__close-button');
-let nameInput = document.querySelector('#name-input');
-let hobbyInput = document.querySelector('#hobby-input');
+let nameInput = document.querySelector('.popup__input_name');
+let hobbyInput = document.querySelector('.popup__input_hobby');
 let profileName = document.querySelector('.profile-info__name');
 let hobbyName = document.querySelector('.profile-info__hobby');
 let saveForm = document.querySelector('.popup__form');
 
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-}
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-}
-
 openPopupButton.addEventListener('click', function () {
-  openPopup(popupOpen);
+  popupOpen.classList.add('popup_opened');
 });
 
 closePopupButton.addEventListener('click', function () {
-  closePopup(popupOpen);
+  popupOpen.classList.remove('popup_opened');
 });
 
 nameInput.value = profileName.textContent;
@@ -30,5 +22,5 @@ saveForm.addEventListener('submit', function (event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
   hobbyName.textContent = hobbyInput.value;
-  closePopup(popupOpen);
+  popupOpen.classList.remove('popup_opened');
 });

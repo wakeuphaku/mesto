@@ -1,4 +1,4 @@
-.input {
+.popup__input {
   border: none;
 
   width: 358px;
@@ -6,15 +6,18 @@
   margin-right: auto;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding: 0;
-  padding-bottom: 13px;
+  padding-bottom: 9px;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   color: #000000;
 }
+.popup__input::placeholder {
+  color: grey;
+}
 @media screen and (max-width: 767px) {
-  .input {
+  .popup__input {
     max-width: 238px;
   }
 }

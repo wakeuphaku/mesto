@@ -1,5 +1,5 @@
 .profile-info__hobby {
-  min-width: 336px;
+  max-width: 336px;
 
   font-style: normal;
   font-weight: 400;
@@ -7,18 +7,18 @@
   line-height: 22px;
   margin: 0;
   color: #ffffff;
-  max-height: 18px;
+
   margin-top: 7px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 @media screen and (max-width: 767px) {
   .profile-info__hobby {
-    min-width: 282px;
+    max-width: 282px;
 
     font-size: 14px;
     line-height: 17px;
     text-align: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
   }
 }

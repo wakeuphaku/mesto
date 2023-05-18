@@ -11,74 +11,83 @@
     <header class="header">
       <a href="#" class="header__logo"></a>
     </header>
-    <section class="profile">
-      <img src="./images/Avatar.png" alt="Аватар" class="profile__avatar" />
-      <div class="profile-info">
-        <h1 class="profile-info__name">Жак-Ив Кусто</h1>
+    <main>
+      <section class="profile">
+        <img src="./images/Avatar.png" alt="Аватар" class="profile__avatar" />
+        <div class="profile-info">
+          <h1 class="profile-info__name">Жак-Ив Кусто</h1>
 
-        <img class="profile-info__edit-button" src="./images/EditButton.svg" alt="Редактировать" />
+          <button class="profile-info__edit-button"></button>
 
-        <p class="profile-info__hobby">Исследователь океана</p>
-      </div>
-      <button class="profile__add-button">
-        <img src="./images/plus.svg" alt="Добавить" />
-      </button>
-    </section>
-    <section class="elements">
-      <div class="element">
-        <img src="./images/Karachevsk.jpg" alt="Карачаевск-" class="element__photo" />
-        <div class="element__block">
-          <h2 class="element__text">Карачаевск</h2>
-          <button class="element__like element__like_active"></button>
+          <p class="profile-info__hobby">Исследователь океана</p>
         </div>
-      </div>
-      <div class="element">
-        <img src="./images/mgu.jpg" alt="МГУ" class="element__photo" />
-        <div class="element__block">
-          <h2 class="element__text">МГУ</h2>
-          <button class="element__like element__like_active"></button>
+        <button class="profile__add-button"></button>
+      </section>
+      <section class="elements">
+        <div class="element">
+          <img src="./images/Karachevsk.jpg" alt="Карачаевск-" class="element__photo" />
+          <div class="element__block">
+            <h2 class="element__text">Карачаевск</h2>
+            <button class="element__like element__like_active"></button>
+          </div>
         </div>
-      </div>
-      <div class="element">
-        <img src="./images/baikal.jpg" alt="Байкал" class="element__photo" />
-        <div class="element__block">
-          <h2 class="element__text">Байкал</h2>
-          <button class="element__like element__like_active"></button>
+        <div class="element">
+          <img src="./images/mgu.jpg" alt="МГУ" class="element__photo" />
+          <div class="element__block">
+            <h2 class="element__text">МГУ</h2>
+            <button class="element__like element__like_active"></button>
+          </div>
         </div>
-      </div>
-      <div class="element">
-        <img src="./images/elbrus.jpg" alt="Эльбрус" class="element__photo" />
-        <div class="element__block">
-          <h2 class="element__text">Эльбрус</h2>
-          <button class="element__like element__like_active"></button>
+        <div class="element">
+          <img src="./images/baikal.jpg" alt="Байкал" class="element__photo" />
+          <div class="element__block">
+            <h2 class="element__text">Байкал</h2>
+            <button class="element__like element__like_active"></button>
+          </div>
         </div>
-      </div>
-      <div class="element">
-        <img src="./images/metro.jpg" alt="Метро" class="element__photo" />
-        <div class="element__block">
-          <h2 class="element__text">Метро</h2>
-          <button class="element__like element__like_active"></button>
+        <div class="element">
+          <img src="./images/elbrus.jpg" alt="Эльбрус" class="element__photo" />
+          <div class="element__block">
+            <h2 class="element__text">Эльбрус</h2>
+            <button class="element__like element__like_active"></button>
+          </div>
         </div>
-      </div>
-      <div class="element">
-        <img src="./images/poklonnaya_gora.jpg" alt="Поклонная гора" class="element__photo" />
-        <div class="element__block">
-          <h2 class="element__text">Поклонная гора</h2>
-          <button class="element__like element__like_active"></button>
+        <div class="element">
+          <img src="./images/metro.jpg" alt="Метро" class="element__photo" />
+          <div class="element__block">
+            <h2 class="element__text">Метро</h2>
+            <button class="element__like element__like_active"></button>
+          </div>
         </div>
-      </div>
-    </section>
+        <div class="element">
+          <img src="./images/poklonnaya_gora.jpg" alt="Поклонная гора" class="element__photo" />
+          <div class="element__block">
+            <h2 class="element__text">Поклонная гора</h2>
+            <button class="element__like element__like_active"></button>
+          </div>
+        </div>
+      </section>
+    </main>
     <div class="popup">
       <div class="popup__container">
-        <form class="popup__form">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <div class="popup__inputs">
-            <input id="name-input" type="text" class="input" />
-            <input id="hobby-input" type="text" class="input" />
-          </div>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form" name="editProfile">
+          <input
+            placeholder="Введите что-нибудь!"
+            name="name"
+            type="text"
+            class="popup__input popup__input_name"
+          />
+          <input
+            placeholder="Введите что-нибудь!"
+            name="hobby"
+            type="text"
+            class="popup__input popup__input_hobby"
+          />
+
           <button type="submit" class="popup__button">Сохранить</button>
         </form>
-        <button class="popup__close-button"></button>
+        <button type="button" class="popup__close-button"></button>
       </div>
     </div>
     <footer class="footer">
