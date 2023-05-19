@@ -7,20 +7,23 @@ let profileName = document.querySelector('.profile-info__name');
 let hobbyName = document.querySelector('.profile-info__hobby');
 let saveForm = document.querySelector('.popup__form');
 
-openPopupButton.addEventListener('click', function () {
-  popupOpen.classList.add('popup_opened');
-});
-
-closePopupButton.addEventListener('click', function () {
+function closePopup() {
   popupOpen.classList.remove('popup_opened');
-});
+}
 
-nameInput.value = profileName.textContent;
-hobbyInput.value = hobbyName.textContent;
+function openPopup() {
+  popupOpen.classList.add('popup_opened');
+  nameInput.value = profileName.textContent;
+  hobbyInput.value = hobbyName.textContent;
+}
+
+openPopupButton.addEventListener('click', openPopup);
+
+closePopupButton.addEventListener('click', closePopup);
 
 saveForm.addEventListener('submit', function (event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
   hobbyName.textContent = hobbyInput.value;
-  popupOpen.classList.remove('popup_opened');
+  closePopup(popupOpen);
 });
