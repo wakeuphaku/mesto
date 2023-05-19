@@ -1,5 +1,5 @@
 .profile-info__hobby {
-  max-width: 336px;
+  width: 336px;
 
   font-style: normal;
   font-weight: 400;
@@ -15,7 +15,7 @@
 }
 @media screen and (max-width: 767px) {
   .profile-info__hobby {
-    max-width: 282px;
+    width: 282px;
 
     font-size: 14px;
     line-height: 17px;

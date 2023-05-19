@@ -13,9 +13,7 @@
   line-height: 17px;
   color: #000000;
 }
-.popup__input::placeholder {
-  color: grey;
-}
+
 @media screen and (max-width: 767px) {
   .popup__input {
     max-width: 238px;

@@ -15,6 +15,7 @@
   cursor: pointer;
   color: #ffffff;
   border-radius: 2px;
+  margin-bottom: 35px;
 }
 .popup__button:hover {
   opacity: 0.8;
@@ -26,5 +27,6 @@
     margin-top: 15px;
     font-size: 14px;
     line-height: 17px;
+    margin-bottom: 25px;
   }
 }

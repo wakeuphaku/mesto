@@ -11,13 +11,12 @@
   .elements {
     margin-top: 36px;
     width: 581px;
-    gap: 20px 17px;
+
     grid-template-columns: 1fr 1fr;
   }
 }
 @media screen and (max-width: 767px) {
   .elements {
-    margin-top: 36px;
     width: 282px;
     gap: 20px;
     grid-template-columns: 1fr;
