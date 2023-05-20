@@ -25,5 +25,5 @@ saveForm.addEventListener('submit', function (event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
   hobbyName.textContent = hobbyInput.value;
-  closePopup(popupOpen);
+  closePopup();
 });
