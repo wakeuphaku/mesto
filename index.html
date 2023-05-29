@@ -23,72 +23,43 @@
         </div>
         <button type="button" class="profile__add-button"></button>
       </section>
-      <section class="elements">
-        <div class="element">
-          <img src="./images/Karachevsk.jpg" alt="Карачаевск-" class="element__photo" />
-          <div class="element__block">
-            <h2 class="element__text">Карачаевск</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/mgu.jpg" alt="МГУ" class="element__photo" />
-          <div class="element__block">
-            <h2 class="element__text">МГУ</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/baikal.jpg" alt="Байкал" class="element__photo" />
-          <div class="element__block">
-            <h2 class="element__text">Байкал</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/elbrus.jpg" alt="Эльбрус" class="element__photo" />
-          <div class="element__block">
-            <h2 class="element__text">Эльбрус</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/metro.jpg" alt="Метро" class="element__photo" />
-          <div class="element__block">
-            <h2 class="element__text">Метро</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/poklonnaya_gora.jpg" alt="Поклонная гора" class="element__photo" />
-          <div class="element__block">
-            <h2 class="element__text">Поклонная гора</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </div>
-      </section>
     </main>
+    <template class="elements">
+      <div class="element">
+        <img src="" alt="Фото" class="element__photo" />
+        <button class="element__trash"></button>
+        <div class="element__block">
+          <h2 class="element__text"></h2>
+          <button type="button" class="element__like"></button>
+        </div>
+      </div>
+    </template>
     <div class="popup">
       <div class="popup__container">
-        <h2 class="popup__title">Редактировать профиль</h2>
+        <h2 class="popup__title"></h2>
         <form class="popup__form" name="editProfile">
           <input
-            placeholder="Введите что-нибудь!"
+            placeholder=""
             name="name"
             type="text"
             class="popup__input popup__input_text_name"
           />
           <input
-            placeholder="Введите что-нибудь!"
+            placeholder=""
             name="hobby"
             type="text"
             class="popup__input popup__input_text_hobby"
           />
 
-          <button type="submit" class="popup__button">Сохранить</button>
+          <button type="submit" class="popup__button"></button>
         </form>
         <button type="button" class="popup__close-button"></button>
       </div>
+    </div>
+
+    <div class="popup-image">
+      <div class="popup-image__photo"></div>
+      <p class="popup-image__text"></p>
     </div>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
