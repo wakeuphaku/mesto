@@ -39,9 +39,6 @@ const addForm = document.querySelector('.popup__form');
 const template = document.querySelector('.elements');
 const templateContent = template.content;
 const element = templateContent.querySelector('.element');
-const addButton = document.querySelector('.profile__add-button');
-const popupImage = document.querySelector('.popup-image');
-const elementPhoto = document.querySelector('.element__trash');
 
 function closePopup() {
   popupOpen.classList.remove('popup_opened');
@@ -49,8 +46,6 @@ function closePopup() {
 
 function openPopup() {
   popupOpen.classList.add('popup_opened');
-  nameInput.placeholder = 'Введите что-нибудь!';
-  hobbyInput.placeholder = 'Введите что-нибудь!';
   nameInput.value = profileName.textContent;
   hobbyInput.value = hobbyName.textContent;
   popupTitle.textContent = 'Редактировать профиль';
@@ -84,18 +79,28 @@ function addCard(value) {
 
   return newElement;
 }
-addButton.addEventListener('click', openPopupAdd);
+
+const openPopupAddButton = document.querySelector('.profile__add-button');
+const closePopupAddButton = document.querySelector('.popup-add__close-button');
+const popupAddOpen = document.querySelector('.popup-add');
+const placeInput = document.querySelector('.popup-add__input_text_place');
+const linkInput = document.querySelector('.popup-add__input_text_link');
+const elementText = document.querySelector('.element__text');
+const elementPhoto = document.querySelector('.element__photo');
+const popupAddTitle = document.querySelector('.popup-add__title');
+const saveAddForm = document.querySelector('.popup-add__form');
+const popupAddButton = document.querySelector('.popup-add__button');
+
+function closePopupAdd() {
+  popupAddOpen.classList.remove('popup-add_opened');
+}
 
 function openPopupAdd() {
-  popupOpen.classList.add('popup_opened');
-  nameInput.placeholder = 'Название';
-  hobbyInput.placeholder = 'Ссылка на картинку';
-  popupTitle.textContent = 'Новое место';
-  popupButton.textContent = 'Создать';
+  popupAddOpen.classList.add('popup-add_opened');
+  popupAddTitle.textContent = 'Новое место';
+  popupAddButton.textContent = 'Создать';
 }
 
-elementPhoto.addEventListener('click', openPopupAdd);
+openPopupAddButton.addEventListener('click', openPopupAdd);
 
-function openImagePopup() {
-  popupImage.classList.add('popup_opened');
-}
+closePopupAddButton.addEventListener('click', closePopupAdd);
