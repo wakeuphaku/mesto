@@ -68,14 +68,13 @@ initialCards.forEach(function (item) {
   template.append(newElement);
 });
 
-function addCard(value) {
+function addCard(item) {
   const newElement = element.cloneNode(true);
 
   const elementText = newElement.querySelector('.element__text');
   const elementPhoto = newElement.querySelector('.element__photo');
-
-  elementPhoto.src = value.link;
-  elementText.textContent = value.name;
+  elementPhoto.src = item.link;
+  elementText.textContent = item.name;
 
   return newElement;
 }
@@ -90,6 +89,12 @@ const elementPhoto = document.querySelector('.element__photo');
 const popupAddTitle = document.querySelector('.popup-add__title');
 const saveAddForm = document.querySelector('.popup-add__form');
 const popupAddButton = document.querySelector('.popup-add__button');
+const elementLike = document.querySelector('.element__like');
+
+function likeToggle() {
+  elementLike.classList.toggle('element__like_active');
+}
+elementLike.addEventListener('click', likeToggle);
 
 function closePopupAdd() {
   popupAddOpen.classList.remove('popup-add_opened');
@@ -97,6 +102,8 @@ function closePopupAdd() {
 
 function openPopupAdd() {
   popupAddOpen.classList.add('popup-add_opened');
+  placeInput.value = '';
+  linkInput.value = '';
   popupAddTitle.textContent = 'Новое место';
   popupAddButton.textContent = 'Создать';
 }
@@ -104,3 +111,18 @@ function openPopupAdd() {
 openPopupAddButton.addEventListener('click', openPopupAdd);
 
 closePopupAddButton.addEventListener('click', closePopupAdd);
+
+saveAddForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const newElement = addCard({
+    name: placeInput.value,
+    link: linkInput.value
+  });
+  template.prepend(newElement);
+  closePopupAdd();
+});
+
+const elementTrash = document.querySelector('.element__trash');
+
+elementTrash.addEventListener('button', function (event) {});
