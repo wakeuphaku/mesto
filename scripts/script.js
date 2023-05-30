@@ -119,10 +119,14 @@ saveAddForm.addEventListener('submit', function (event) {
     name: placeInput.value,
     link: linkInput.value
   });
+
   template.prepend(newElement);
   closePopupAdd();
-  newElement.addEventListener('click', function (event) {
-    newElement.classList.toggle('element__like_active');
+
+  const newElementLike = document.querySelector('.element__like');
+
+  newElementLike.addEventListener('click', function (event) {
+    newElementLike.classList.toggle('element__like_active');
   });
 });
 
