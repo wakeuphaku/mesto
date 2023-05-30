@@ -89,13 +89,13 @@ const elementPhoto = document.querySelector('.element__photo');
 const popupAddTitle = document.querySelector('.popup-add__title');
 const saveAddForm = document.querySelector('.popup-add__form');
 const popupAddButton = document.querySelector('.popup-add__button');
-const elementLike = document.querySelector('.element__like');
+const elementLike = document.querySelectorAll('.element__like');
 
-function likeToggle() {
-  elementLike.classList.toggle('element__like_active');
-}
-elementLike.addEventListener('click', likeToggle);
-
+elementLike.forEach(function (item) {
+  item.addEventListener('click', function (event) {
+    item.classList.toggle('element__like_active');
+  });
+});
 function closePopupAdd() {
   popupAddOpen.classList.remove('popup-add_opened');
 }
@@ -121,6 +121,9 @@ saveAddForm.addEventListener('submit', function (event) {
   });
   template.prepend(newElement);
   closePopupAdd();
+  newElement.addEventListener('click', function (event) {
+    newElement.classList.toggle('element__like_active');
+  });
 });
 
 const elementTrash = document.querySelector('.element__trash');
