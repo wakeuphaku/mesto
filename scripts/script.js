@@ -75,7 +75,12 @@ function addCard(item) {
   const elementPhoto = newElement.querySelector('.element__photo');
   elementPhoto.src = item.link;
   elementText.textContent = item.name;
+  elementPhoto.alt = elementText.textContent;
 
+  const trashButton = newElement.querySelector('.element__trash');
+  trashButton.addEventListener('click', function () {
+    template.removeChild(newElement);
+  });
   return newElement;
 }
 
@@ -84,19 +89,33 @@ const closePopupAddButton = document.querySelector('.popup-add__close-button');
 const popupAddOpen = document.querySelector('.popup-add');
 const placeInput = document.querySelector('.popup-add__input_text_place');
 const linkInput = document.querySelector('.popup-add__input_text_link');
-const elementText = document.querySelector('.element__text');
+const elementText = document.querySelectorAll('.element__text');
 const elementPhoto = document.querySelectorAll('.element__photo');
 const popupAddTitle = document.querySelector('.popup-add__title');
 const saveAddForm = document.querySelector('.popup-add__form');
 const popupAddButton = document.querySelector('.popup-add__button');
 const elementLike = document.querySelectorAll('.element__like');
 const popupImage = document.querySelector('.popup-image');
+const popupImagePhoto = document.querySelector('.popup-image__photo');
+const popupImageText = document.querySelector('.popup-image__text');
+const closePopupImageButton = document.querySelector('.popup-image__close-button');
 
 elementPhoto.forEach(function (item) {
   item.addEventListener('click', function (event) {
+    const elementTextItem = document.querySelectorAll('.element__text');
     popupImage.classList.toggle('popup-image_opened');
+    popupImagePhoto.src = item.src;
+    popupImageText.textContent = item.alt;
   });
 });
+
+function closePopupImage() {
+  popupImage.classList.remove('popup-image_opened');
+  popupImagePhoto.src = '';
+  popupImageText.textContent = '';
+}
+
+closePopupImageButton.addEventListener('click', closePopupImage);
 
 elementLike.forEach(function (item) {
   item.addEventListener('click', function (event) {
@@ -136,9 +155,11 @@ saveAddForm.addEventListener('submit', function (event) {
   newElementLike.addEventListener('click', function (event) {
     newElementLike.classList.toggle('element__like_active');
   });
-});
-const newElementPhoto = document.querySelector('.element__photo');
-const newPopupImage = document.querySelector('.popup-image');
-elementPhoto.addEventListener('click', function (event) {
-  newPopupImage.classList.add('popup-image_opened');
+  const newElementPhoto = document.querySelector('.element__photo');
+
+  newElementPhoto.addEventListener('click', function (event) {
+    popupImage.classList.add('popup-image_opened');
+    popupImagePhoto.src = linkInput.value;
+    popupImageText.textContent = placeInput.value;
+  });
 });
