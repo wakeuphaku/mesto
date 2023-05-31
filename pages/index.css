@@ -40,3 +40,4 @@
 @import url('../blocks/popup-add/popup-add.css');
 @import url('../blocks/popup-add/__close-button/popup-add__close-button.css');
 @import url('../blocks/popup-image/__block/popup-image__block.css');
+@import url('../blocks/popup-image/_opened/popup-image_opened.css');

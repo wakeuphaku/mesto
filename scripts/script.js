@@ -85,17 +85,25 @@ const popupAddOpen = document.querySelector('.popup-add');
 const placeInput = document.querySelector('.popup-add__input_text_place');
 const linkInput = document.querySelector('.popup-add__input_text_link');
 const elementText = document.querySelector('.element__text');
-const elementPhoto = document.querySelector('.element__photo');
+const elementPhoto = document.querySelectorAll('.element__photo');
 const popupAddTitle = document.querySelector('.popup-add__title');
 const saveAddForm = document.querySelector('.popup-add__form');
 const popupAddButton = document.querySelector('.popup-add__button');
 const elementLike = document.querySelectorAll('.element__like');
+const popupImage = document.querySelector('.popup-image');
+
+elementPhoto.forEach(function (item) {
+  item.addEventListener('click', function (event) {
+    popupImage.classList.toggle('popup-image_opened');
+  });
+});
 
 elementLike.forEach(function (item) {
   item.addEventListener('click', function (event) {
     item.classList.toggle('element__like_active');
   });
 });
+
 function closePopupAdd() {
   popupAddOpen.classList.remove('popup-add_opened');
 }
@@ -129,7 +137,8 @@ saveAddForm.addEventListener('submit', function (event) {
     newElementLike.classList.toggle('element__like_active');
   });
 });
-
-const elementTrash = document.querySelector('.element__trash');
-
-elementTrash.addEventListener('button', function (event) {});
+const newElementPhoto = document.querySelector('.element__photo');
+const newPopupImage = document.querySelector('.popup-image');
+elementPhoto.addEventListener('click', function (event) {
+  newPopupImage.classList.add('popup-image_opened');
+});
