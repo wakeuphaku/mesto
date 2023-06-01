@@ -25,50 +25,48 @@ const initialCards = [
   }
 ];
 
-const openPopupButton = document.querySelector('.profile-info__edit-button');
-const popupOpen = document.querySelector('.popup');
-const closePopupButton = document.querySelector('.popup__close-button');
+const openPopupEditButton = document.querySelector('.profile-info__edit-button');
+const popupEdit = document.querySelector('.popup');
+const closePopupEditButton = document.querySelector('.popup-edit__close-button');
 const nameInput = document.querySelector('.popup__input_text_name');
 const hobbyInput = document.querySelector('.popup__input_text_hobby');
 const profileName = document.querySelector('.profile-info__name');
 const popupTitle = document.querySelector('.popup__title');
 const hobbyName = document.querySelector('.profile-info__hobby');
-const saveForm = document.querySelector('.popup__form');
+const editForm = document.querySelector('.popup__form');
 const popupButton = document.querySelector('.popup__button');
 const addForm = document.querySelector('.popup__form');
 const template = document.querySelector('.elements');
 const templateContent = template.content;
 const element = templateContent.querySelector('.element');
 
-function closePopup() {
-  popupOpen.classList.remove('popup_opened');
+function closePopupEdit() {
+  popupEdit.classList.remove('popup_opened');
 }
 
-function openPopup() {
-  popupOpen.classList.add('popup_opened');
+function openPopupEdit() {
+  popupEdit.classList.add('popup_opened');
   nameInput.value = profileName.textContent;
   hobbyInput.value = hobbyName.textContent;
-  popupTitle.textContent = 'Редактировать профиль';
-  popupButton.textContent = 'Сохранить';
 }
 
-openPopupButton.addEventListener('click', openPopup);
+openPopupEditButton.addEventListener('click', openPopupEdit);
 
-closePopupButton.addEventListener('click', closePopup);
+closePopupEditButton.addEventListener('click', closePopupEdit);
 
-saveForm.addEventListener('submit', function (event) {
+editForm.addEventListener('submit', function (event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
   hobbyName.textContent = hobbyInput.value;
-  closePopup();
+  closePopupEdit();
 });
 
 initialCards.forEach(function (item) {
-  const newElement = addCard(item);
+  const newElement = createCard(item);
   template.append(newElement);
 });
 
-function addCard(item) {
+function createCard(item) {
   const newElement = element.cloneNode(true);
 
   const elementText = newElement.querySelector('.element__text');
@@ -142,7 +140,7 @@ closePopupAddButton.addEventListener('click', closePopupAdd);
 saveAddForm.addEventListener('submit', function (event) {
   event.preventDefault();
 
-  const newElement = addCard({
+  const newElement = createCard({
     name: placeInput.value,
     link: linkInput.value
   });

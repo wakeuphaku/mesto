@@ -34,29 +34,29 @@
         </div>
       </div>
     </template>
-    <div class="popup">
+    <div class="popup popup-edit">
       <div class="popup__container">
-        <h2 class="popup__title"></h2>
+        <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form" name="editProfile">
           <input
-            placeholder="Введите что-нибудь!"
+            placeholder="Введите имя"
             name="name"
             type="text"
             class="popup__input popup__input_text_name"
           />
           <input
-            placeholder="Введите что-нибудь!"
+            placeholder="Введите хобби"
             name="hobby"
             type="text"
             class="popup__input popup__input_text_hobby"
           />
 
-          <button type="submit" class="popup__button"></button>
+          <button type="submit" class="popup__button">Сохранить</button>
         </form>
-        <button type="button" class="popup__close-button"></button>
+        <button type="button" class="popup-edit__close-button popup__close-button"></button>
       </div>
     </div>
-    <div class="popup-add">
+    <div class="popup popup-add">
       <div class="popup-add__container">
         <h2 class="popup-add__title"></h2>
         <form class="popup-add__form" name="editCard">
@@ -69,20 +69,20 @@
           <input
             placeholder="Ссылка на картинку"
             name="link"
-            type="text"
+            type="url"
             class="popup-add__input popup-add__input_text_link"
           />
 
           <button type="submit" class="popup-add__button"></button>
         </form>
-        <button type="button" class="popup-add__close-button"></button>
+        <button type="button" class="popup-add__close-button popup__close-button"></button>
       </div>
     </div>
-    <div class="popup-image">
+    <div class="popup popup-image">
       <div class="popup-image__block">
         <img src="./images/mgu.jpg" class="popup-image__photo" />
         <p class="popup-image__text"></p>
-        <button type="button" class="popup-image__close-button"></button>
+        <button type="button" class="popup-image__close-button popup__close-button"></button>
       </div>
     </div>
     <footer class="footer">
