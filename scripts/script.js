@@ -28,8 +28,8 @@ const initialCards = [
 const openPopupEditButton = document.querySelector('.profile-info__edit-button');
 const popupEdit = document.querySelector('.popup');
 const closePopupButton = popupEdit.querySelector('.popup__close-button');
-const nameInput = document.querySelector('.popup__input_text_name');
-const hobbyInput = document.querySelector('.popup__input_text_hobby');
+const nameInput = document.querySelector('.popup__input_text-name');
+const hobbyInput = document.querySelector('.popup__input_text-hobby');
 const profileName = document.querySelector('.profile-info__name');
 const popupTitle = document.querySelector('.popup__title');
 const hobbyName = document.querySelector('.profile-info__hobby');
@@ -98,8 +98,8 @@ function createCard(item) {
 
 const openPopupAddButton = document.querySelector('.profile__add-button');
 const popupAddOpen = document.querySelector('.popup-add');
-const placeInput = document.querySelector('.popup-add__input_text_place');
-const linkInput = document.querySelector('.popup-add__input_text_link');
+const placeInput = document.querySelector('.popup-add__input_text-place');
+const linkInput = document.querySelector('.popup-add__input_text-link');
 const elementText = document.querySelectorAll('.element__text');
 const elementPhoto = document.querySelectorAll('.element__photo');
 const popupAddTitle = document.querySelector('.popup-add__title');
