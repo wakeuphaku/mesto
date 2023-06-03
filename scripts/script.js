@@ -26,7 +26,8 @@ const initialCards = [
 ];
 
 const openPopupEditButton = document.querySelector('.profile-info__edit-button');
-const popupEdit = document.querySelector('.popup');
+const popup = document.querySelector('.popup');
+const popupEdit = document.querySelector('.popup-edit');
 const closePopupButton = popupEdit.querySelector('.popup__close-button');
 const nameInput = document.querySelector('.popup__input_text-name');
 const hobbyInput = document.querySelector('.popup__input_text-hobby');
@@ -40,12 +41,20 @@ const template = document.querySelector('.elements');
 const templateContent = template.content;
 const element = templateContent.querySelector('.element');
 
+const openPopup = function (item) {
+  item.classList.add('popup_opened');
+};
+
+const closePopup = function (item) {
+  item.classList.remove('popup_opened');
+};
+
 function closePopupEdit() {
-  popupEdit.classList.remove('popup_opened');
+  closePopup(popupEdit);
 }
 
 function openPopupEdit() {
-  popupEdit.classList.add('popup_opened');
+  openPopup(popupEdit);
   nameInput.value = profileName.textContent;
   hobbyInput.value = hobbyName.textContent;
 }
@@ -83,9 +92,9 @@ function createCard(item) {
   const newElementPhoto = newElement.querySelector('.element__photo');
 
   newElementPhoto.addEventListener('click', function (event) {
-    popupImage.classList.add('popup_opened');
-    popupImagePhoto.src = linkInput.value;
-    popupImageText.textContent = placeInput.value;
+    openPopup(popupImage);
+    popupImagePhoto.src = elementPhoto.src;
+    popupImageText.textContent = elementPhoto.alt;
   });
 
   const newElementLike = newElement.querySelector('.element__like');
@@ -109,35 +118,28 @@ const elementLike = document.querySelectorAll('.element__like');
 const popupImage = document.querySelector('.popup-image');
 const popupImagePhoto = document.querySelector('.popup-image__photo');
 const popupImageText = document.querySelector('.popup-image__text');
+const closePopupAddButton = popupAddOpen.querySelector('.popup__close-button');
+const closePopupImageButton = popupImage.querySelector('.popup__close-button');
 
-elementPhoto.forEach(function (item) {
-  item.addEventListener('click', function (event) {
-    popupImage.classList.add('popup_opened');
-    popupImagePhoto.src = item.src;
-    popupImageText.textContent = item.alt;
-    const closePopupButton = popupImage.querySelector('.popup__close-button');
-    closePopupButton.addEventListener('click', closePopupImage);
-  });
-});
+closePopupImageButton.addEventListener('click', closePopupImage);
 
 function closePopupImage() {
-  popupImage.classList.remove('popup_opened');
+  closePopup(popupImage);
   popupImagePhoto.src = '';
   popupImageText.textContent = '';
 }
 
 function closePopupAdd() {
-  popupAddOpen.classList.remove('popup_opened');
+  closePopup(popupAddOpen);
 }
 
 function openPopupAdd() {
-  popupAddOpen.classList.add('popup_opened');
+  openPopup(popupAddOpen);
   placeInput.value = '';
   linkInput.value = '';
-
-  const closePopupButton = popupAddOpen.querySelector('.popup__close-button');
-  closePopupButton.addEventListener('click', closePopupAdd);
 }
+
+closePopupAddButton.addEventListener('click', closePopupAdd);
 
 openPopupAddButton.addEventListener('click', openPopupAdd);
 
