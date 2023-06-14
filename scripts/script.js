@@ -28,7 +28,7 @@ const initialCards = [
 const openPopupEditButton = document.querySelector('.profile-info__edit-button');
 const popup = document.querySelector('.popup');
 const popupEdit = document.querySelector('.popup-edit');
-const closePopupButton = popupEdit.querySelector('.popup__close-button');
+const closePopupEditButton = popupEdit.querySelector('.popup__close-button');
 const nameInput = document.querySelector('.popup__input_text-name');
 const hobbyInput = document.querySelector('.popup__input_text-hobby');
 const profileName = document.querySelector('.profile-info__name');
@@ -61,7 +61,7 @@ function openPopupEdit() {
 
 openPopupEditButton.addEventListener('click', openPopupEdit);
 
-closePopupButton.addEventListener('click', closePopupEdit);
+closePopupEditButton.addEventListener('click', closePopupEdit);
 
 editForm.addEventListener('submit', function (event) {
   event.preventDefault();
