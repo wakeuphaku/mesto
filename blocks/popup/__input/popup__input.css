@@ -13,6 +13,9 @@
   line-height: 17px;
   color: #000000;
 }
+.popup__input:invalid {
+  border-bottom: 1px solid red;
+}
 
 @media screen and (max-width: 767px) {
   .popup__input {

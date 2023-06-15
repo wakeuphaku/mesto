@@ -37,21 +37,35 @@
     <div class="popup popup-edit">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup-edit__form" name="editProfile">
-          <input
-            placeholder="Введите имя"
-            name="name"
-            type="text"
-            class="popup__input popup__input_text-name"
-          />
-          <input
-            placeholder="Введите хобби"
-            name="hobby"
-            type="text"
-            class="popup__input popup__input_text-hobby"
-          />
+        <form class="popup__form popup-edit__form" name="editProfile" novalidate>
+          <div class="popup__form_block">
+            <input
+              id="name-input"
+              minlength="2"
+              maxlength="30"
+              required
+              placeholder="Введите имя"
+              name="name"
+              type="text"
+              class="popup__input popup__input_text-name"
+            />
+            <span class="popup__input-error name-input-error"></span>
+          </div>
+          <div class="popup__form_block">
+            <input
+              id="hobby-input"
+              minlength="2"
+              maxlength="200"
+              required
+              placeholder="Введите хобби"
+              name="hobby"
+              type="text"
+              class="popup__input popup__input_text-hobby"
+            />
+            <span class="popup__input-error hobby-input-error"></span>
+          </div>
 
-          <button type="submit" class="popup__button">Сохранить</button>
+          <button type="submit" class="popup__button popup-edit__button">Сохранить</button>
         </form>
         <button type="button" class="popup__close-button"></button>
       </div>
@@ -59,21 +73,33 @@
     <div class="popup popup-add">
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup-add__form" name="editCard">
-          <input
-            placeholder="Название"
-            name="place"
-            type="text"
-            class="popup__input popup__input_text-place"
-          />
-          <input
-            placeholder="Ссылка на картинку"
-            name="link"
-            type="url"
-            class="popup__input popup__input_text-link"
-          />
+        <form class="popup__form popup-add__form" name="editCard" novalidate>
+          <div class="popup__form_block">
+            <input
+              id="place-input"
+              minlength="2"
+              maxlength="30"
+              required
+              placeholder="Название"
+              name="place"
+              type="text"
+              class="popup__input popup__input_text-place"
+            />
+            <span class="popup__input-error place-input-error"></span>
+          </div>
+          <div class="popup__form_block">
+            <input
+              id="link-input"
+              required
+              placeholder="Ссылка на картинку"
+              name="link"
+              type="url"
+              class="popup__input popup__input_text-link"
+            />
+            <span class="popup__input-error link-input-error"></span>
+          </div>
 
-          <button type="submit" class="popup-add__button">Создать</button>
+          <button type="submit" class="popup__button popup-add__button">Создать</button>
         </form>
         <button type="button" class="popup__close-button"></button>
       </div>
