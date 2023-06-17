@@ -97,8 +97,8 @@ function createCard(item) {
   newElementPhoto.addEventListener('click', function (event) {
     openPopup(popupImage);
     popupImagePhoto.src = elementPhoto.src;
-    elementPhoto.alt = elementText.textContent;
     popupImageText.textContent = elementPhoto.alt;
+    popupImagePhoto.alt = popupImageText.textContent;
   });
 
   const newElementLike = newElement.querySelector('.element__like');
