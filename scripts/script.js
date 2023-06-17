@@ -40,6 +40,7 @@ const addForm = document.querySelector('.popup__form');
 const template = document.querySelector('.elements');
 const templateContent = template.content;
 const element = templateContent.querySelector('.element');
+const popupEditButton = document.querySelector('.popup-edit__button');
 
 const openPopup = function (item) {
   item.classList.add('popup_opened');
@@ -94,6 +95,7 @@ function createCard(item) {
   newElementPhoto.addEventListener('click', function (event) {
     openPopup(popupImage);
     popupImagePhoto.src = elementPhoto.src;
+    elementPhoto.alt = elementText.textContent;
     popupImageText.textContent = elementPhoto.alt;
   });
 
@@ -137,6 +139,9 @@ function openPopupAdd() {
   openPopup(popupAddOpen);
   placeInput.value = '';
   linkInput.value = '';
+
+  popupAddButton.classList.add('popup__button_inactive');
+  popupAddButton.disabled = true;
 }
 
 closePopupAddButton.addEventListener('click', closePopupAdd);
