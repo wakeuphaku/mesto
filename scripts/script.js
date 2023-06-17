@@ -44,10 +44,12 @@ const popupEditButton = document.querySelector('.popup-edit__button');
 
 const openPopup = function (item) {
   item.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
 };
 
 const closePopup = function (item) {
   item.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
 };
 
 function closePopupEdit() {
@@ -162,13 +164,12 @@ saveAddForm.addEventListener('submit', function (event) {
 
 const popupAll = document.querySelectorAll('.popup');
 
-popupAll.forEach(popup => {
-  document.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape') {
-      closePopup(popup);
-    }
-  });
-});
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
 
 popupAll.forEach(popup => {
   popup.addEventListener('click', function (event) {
