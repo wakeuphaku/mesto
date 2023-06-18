@@ -1,27 +1,30 @@
-const showInputError = (formElement, inputElement, errorMessage, error) => {
+const classNames = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_inactive',
+  errorClass: 'popup__input-error_active'
+};
+
+const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
   errorElement.textContent = errorMessage;
-  errorElement.classList.add(error);
+  errorElement.classList.add(classNames.errorClass);
 };
 
-const hideInputError = (formElement, inputElement, error) => {
+const hideInputError = (formElement, inputElement) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
-  errorElement.classList.remove(error);
+  errorElement.classList.remove(classNames.errorClass);
   errorElement.textContent = '';
 };
 
 const checkInputValidity = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
-    showInputError(
-      formElement,
-      inputElement,
-      inputElement.validationMessage,
-      'popup__input-error_active'
-    );
+    showInputError(formElement, inputElement, inputElement.validationMessage);
   } else {
-    hideInputError(formElement, inputElement, 'popup__input-error_active');
+    hideInputError(formElement, inputElement);
   }
 };
 
