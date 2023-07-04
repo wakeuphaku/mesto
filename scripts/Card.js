@@ -1,3 +1,5 @@
+import { popupImage, popupImagePhoto, popupImageText } from './script.js';
+
 export class Card {
   constructor(data, templateSelector) {
     this._templateSelector = templateSelector;
@@ -14,17 +16,6 @@ export class Card {
     return cardElement;
   }
 
-  _setEventListeners() {}
-
-  _toggleLikeButton() {
-    this._element = this._getTemplate();
-    const newElementLike = this._element.querySelector('.element__like');
-
-    newElementLike.addEventListener('click', () => {
-      newElementLike.classList.toggle('element__like_active');
-    });
-  }
-
   _trashButton() {
     this._element = this._getTemplate();
     const elements = document.querySelector('.elements');
@@ -36,11 +27,22 @@ export class Card {
 
   createCard() {
     this._element = this._getTemplate();
-    this._setEventListeners();
-    this._toggleLikeButton();
     this._trashButton();
 
+    const toggleLikeButton = this._element.querySelector('.element__like');
+    toggleLikeButton.addEventListener('click', () => {
+      toggleLikeButton.classList.toggle('element__like_active');
+    });
+
+    const openPopupCard = this._element.querySelector('.element__photo');
+    openPopupCard.addEventListener('click', () => {
+      popupImage.classList.add('popup_opened');
+      popupImagePhoto.src = openPopupCard.src;
+      popupImageText.textContent = openPopupCard.alt;
+    });
+
     this._element.querySelector('.element__photo').src = this.link;
+    this._element.querySelector('.element__photo').alt = this.name;
     this._element.querySelector('.element__text').textContent = this.name;
 
     return this._element;
