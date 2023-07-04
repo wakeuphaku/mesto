@@ -1,3 +1,5 @@
+import { Card } from './Card.js';
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -26,7 +28,7 @@ const initialCards = [
 ];
 
 const openPopupEditButton = document.querySelector('.profile-info__edit-button');
-const popup = document.querySelector('.popup');
+export const popup = document.querySelector('.popup');
 const popupEdit = document.querySelector('.popup-edit');
 const closePopupEditButton = popupEdit.querySelector('.popup__close-button');
 const nameInput = document.querySelector('.popup__input_text-name');
@@ -42,7 +44,7 @@ const templateContent = template.content;
 const element = templateContent.querySelector('.element');
 const popupEditButton = document.querySelector('.popup-edit__button');
 
-const openPopup = function (item) {
+export const openPopup = function (item) {
   item.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape);
 };
@@ -73,57 +75,28 @@ editForm.addEventListener('submit', function (event) {
   closePopupEdit();
 });
 
-initialCards.forEach(function (item) {
-  const newElement = createCard(item);
-  template.append(newElement);
+initialCards.forEach(item => {
+  const card = new Card(item, '.elements');
+  const cardElement = card.createCard();
+
+  document.querySelector('.elements').append(cardElement);
 });
-
-function createCard(item) {
-  const newElement = element.cloneNode(true);
-
-  const elementText = newElement.querySelector('.element__text');
-  const elementPhoto = newElement.querySelector('.element__photo');
-  elementPhoto.src = item.link;
-  elementText.textContent = item.name;
-  elementPhoto.alt = elementText.textContent;
-
-  const trashButton = newElement.querySelector('.element__trash');
-  trashButton.addEventListener('click', function () {
-    template.removeChild(newElement);
-  });
-
-  const newElementPhoto = newElement.querySelector('.element__photo');
-
-  newElementPhoto.addEventListener('click', function (event) {
-    openPopup(popupImage);
-    popupImagePhoto.src = elementPhoto.src;
-    popupImageText.textContent = elementPhoto.alt;
-    popupImagePhoto.alt = popupImageText.textContent;
-  });
-
-  const newElementLike = newElement.querySelector('.element__like');
-
-  newElementLike.addEventListener('click', function (event) {
-    newElementLike.classList.toggle('element__like_active');
-  });
-  return newElement;
-}
 
 const openPopupAddButton = document.querySelector('.profile__add-button');
 const popupAddOpen = document.querySelector('.popup-add');
 const placeInput = document.querySelector('.popup__input_text-place');
 const linkInput = document.querySelector('.popup__input_text-link');
-const elementText = document.querySelectorAll('.element__text');
-const elementPhoto = document.querySelectorAll('.element__photo');
+export const elementText = document.querySelectorAll('.element__text');
+export const elementPhoto = document.querySelectorAll('.element__photo');
 const popupAddTitle = document.querySelector('.popup-add__title');
 const saveAddForm = document.querySelector('.popup-add__form');
 const popupAddButton = document.querySelector('.popup-add__button');
 const elementLike = document.querySelectorAll('.element__like');
-const popupImage = document.querySelector('.popup-image');
-const popupImagePhoto = document.querySelector('.popup-image__photo');
-const popupImageText = document.querySelector('.popup-image__text');
+export const popupImage = document.querySelector('.popup-image');
+export const popupImagePhoto = document.querySelector('.popup-image__photo');
+export const popupImageText = document.querySelector('.popup-image__text');
 const closePopupAddButton = popupAddOpen.querySelector('.popup__close-button');
-const closePopupImageButton = popupImage.querySelector('.popup__close-button');
+export const closePopupImageButton = popupImage.querySelector('.popup__close-button');
 
 closePopupImageButton.addEventListener('click', closePopupImage);
 
