@@ -37,7 +37,7 @@ const initialCards = [
 ];
 
 const openPopupEditButton = document.querySelector('.profile-info__edit-button');
-export const popup = document.querySelector('.popup');
+const popup = document.querySelector('.popup');
 const popupEdit = document.querySelector('.popup-edit');
 const closePopupEditButton = popupEdit.querySelector('.popup__close-button');
 const nameInput = document.querySelector('.popup__input_text-name');
@@ -95,17 +95,17 @@ const openPopupAddButton = document.querySelector('.profile__add-button');
 const popupAddOpen = document.querySelector('.popup-add');
 const placeInput = document.querySelector('.popup__input_text-place');
 const linkInput = document.querySelector('.popup__input_text-link');
-export const elementText = document.querySelectorAll('.element__text');
-export const elementPhoto = document.querySelectorAll('.element__photo');
+const elementText = document.querySelectorAll('.element__text');
+const elementPhoto = document.querySelectorAll('.element__photo');
 const popupAddTitle = document.querySelector('.popup-add__title');
 const saveAddForm = document.querySelector('.popup-add__form');
 const popupAddButton = document.querySelector('.popup-add__button');
 const elementLike = document.querySelectorAll('.element__like');
-export const popupImage = document.querySelector('.popup-image');
-export const popupImagePhoto = document.querySelectorAll('.popup-image__photo');
-export const popupImageText = document.querySelectorAll('.popup-image__text');
+const popupImage = document.querySelector('.popup-image');
+const popupImagePhoto = document.querySelectorAll('.popup-image__photo');
+const popupImageText = document.querySelectorAll('.popup-image__text');
 const closePopupAddButton = popupAddOpen.querySelector('.popup__close-button');
-export const closePopupImageButton = popupImage.querySelector('.popup__close-button');
+const closePopupImageButton = popupImage.querySelector('.popup__close-button');
 
 closePopupImageButton.addEventListener('click', closePopupImage);
 
@@ -147,7 +147,6 @@ function cardAdd(event) {
   template.prepend(newCreateCard(newCard));
 
   closePopup(popupAddOpen);
-  saveAddForm.reset();
 }
 
 saveAddForm.addEventListener('submit', cardAdd);

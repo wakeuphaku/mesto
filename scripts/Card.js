@@ -1,8 +1,9 @@
 export class Card {
-  constructor(data, templateSelector) {
+  constructor(card, templateSelector, openPopupImage) {
     this._templateSelector = templateSelector;
-    this.name = data.name;
-    this.link = data.link;
+    this.name = card.name;
+    this.link = card.link;
+    this._openPopupImage = openPopupImage;
   }
 
   _getTemplate() {
@@ -15,30 +16,43 @@ export class Card {
   }
 
   _trashButton() {
-    this._element = this._getTemplate();
-
-    this._element.querySelector('.element__trash').addEventListener('click', () => {
-      this._element.querySelector('.elements').removeChild(this._element);
+    const elements = document.querySelector('.elements');
+    const trashButton = this._element.querySelector('.element__trash');
+    trashButton.addEventListener('click', () => {
+      elements.removeChild(this._element);
     });
   }
 
-  _likeButton() {}
-
-  createCard() {
-    this._element = this._getTemplate();
-    this._trashButton();
-
+  _likeButton() {
     const toggleLikeButton = this._element.querySelector('.element__like');
     toggleLikeButton.addEventListener('click', () => {
       toggleLikeButton.classList.toggle('element__like_active');
     });
+  }
 
-    const openPopupCard = this._element.querySelector('.element__photo');
-    openPopupCard.addEventListener('click', () => {
-      popupImagePhoto.src = openPopupCard.src;
-      popupImageText.textContent = openPopupCard.alt;
-      popupImage.classList.add('popup_opened');
+  _openPopupCard() {
+    const cardPhoto = this._element.querySelectorAll('.element__photo');
+    const popupImage = document.querySelector('.popup-image');
+    const popupImagePhoto = document.querySelector('.popup-image__photo');
+    const popupImageText = document.querySelector('.popup-image__text');
+    cardPhoto.forEach(item => {
+      item.addEventListener('click', () => {
+        popupImage.classList.add('popup_opened');
+        popupImagePhoto.src = this._element.querySelector('.element__photo').src;
+        popupImageText.textContent = this._element.querySelector('.element__photo').alt;
+      });
     });
+  }
+
+  _setEventListeners() {
+    this._trashButton();
+    this._likeButton();
+    this._openPopupCard();
+  }
+
+  createCard() {
+    this._element = this._getTemplate();
+    this._setEventListeners();
 
     this._element.querySelector('.element__photo').src = this.link;
     this._element.querySelector('.element__photo').alt = this.name;
