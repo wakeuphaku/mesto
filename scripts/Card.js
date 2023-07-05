@@ -1,5 +1,3 @@
-import { popupImage, popupImagePhoto, popupImageText } from './script.js';
-
 export class Card {
   constructor(data, templateSelector) {
     this._templateSelector = templateSelector;
@@ -18,12 +16,13 @@ export class Card {
 
   _trashButton() {
     this._element = this._getTemplate();
-    const elements = document.querySelector('.elements');
-    const trashButton = this._element.querySelector('.element__trash');
-    trashButton.addEventListener('click', () => {
-      elements.removeChild(this._element);
+
+    this._element.querySelector('.element__trash').addEventListener('click', () => {
+      this._element.querySelector('.elements').removeChild(this._element);
     });
   }
+
+  _likeButton() {}
 
   createCard() {
     this._element = this._getTemplate();
@@ -36,9 +35,9 @@ export class Card {
 
     const openPopupCard = this._element.querySelector('.element__photo');
     openPopupCard.addEventListener('click', () => {
-      popupImage.classList.add('popup_opened');
       popupImagePhoto.src = openPopupCard.src;
       popupImageText.textContent = openPopupCard.alt;
+      popupImage.classList.add('popup_opened');
     });
 
     this._element.querySelector('.element__photo').src = this.link;
