@@ -48,8 +48,8 @@ const hobbyName = document.querySelector('.profile-info__hobby');
 const editForm = document.querySelector('.popup-edit__form');
 const popupButton = document.querySelector('.popup__button');
 const addForm = document.querySelector('.popup__form');
-const template = document.querySelector('.elements');
-const templateContent = template.content;
+const section = document.querySelector('.elements');
+const templateContent = section.content;
 const element = templateContent.querySelector('.element');
 const popupEditButton = document.querySelector('.popup-edit__button');
 
@@ -84,26 +84,30 @@ editForm.addEventListener('submit', function (event) {
   closePopupEdit();
 });
 
-initialCards.forEach(item => {
-  const card = new Card(item, '.elements');
-  const cardElement = card.createCard(item);
+function createCard(item) {
+  const newCard = new Card(item, '.elements', handleCardClick);
+  const cardElement = newCard.createCard();
+  return cardElement;
+}
 
-  document.querySelector('.elements').append(cardElement);
+initialCards.forEach(item => {
+  const cardElement = createCard(item);
+  section.append(cardElement);
 });
 
 const openPopupAddButton = document.querySelector('.profile__add-button');
 const popupAddOpen = document.querySelector('.popup-add');
 const placeInput = document.querySelector('.popup__input_text-place');
 const linkInput = document.querySelector('.popup__input_text-link');
-const elementText = document.querySelectorAll('.element__text');
-const elementPhoto = document.querySelectorAll('.element__photo');
+const elementText = element.querySelector('.element__text');
+const elementPhoto = element.querySelector('.element__photo');
 const popupAddTitle = document.querySelector('.popup-add__title');
 const saveAddForm = document.querySelector('.popup-add__form');
 const popupAddButton = document.querySelector('.popup-add__button');
 const elementLike = document.querySelectorAll('.element__like');
 const popupImage = document.querySelector('.popup-image');
-const popupImagePhoto = document.querySelectorAll('.popup-image__photo');
-const popupImageText = document.querySelectorAll('.popup-image__text');
+const popupImagePhoto = document.querySelector('.popup-image__photo');
+const popupImageText = document.querySelector('.popup-image__text');
 const closePopupAddButton = popupAddOpen.querySelector('.popup__close-button');
 const closePopupImageButton = popupImage.querySelector('.popup__close-button');
 
@@ -114,7 +118,11 @@ function closePopupImage() {
   popupImagePhoto.src = '';
   popupImageText.textContent = '';
 }
-
+function handleCardClick(name, link) {
+  popupImagePhoto.src = link;
+  popupImageText.textContent = name;
+  openPopup(popupImage);
+}
 function closePopupAdd() {
   closePopup(popupAddOpen);
 }
@@ -123,17 +131,14 @@ function openPopupAdd() {
   openPopup(popupAddOpen);
   placeInput.value = '';
   linkInput.value = '';
-
-  popupAddButton.classList.add('popup__button_inactive');
-  popupAddButton.disabled = true;
 }
 
 closePopupAddButton.addEventListener('click', closePopupAdd);
 
 openPopupAddButton.addEventListener('click', openPopupAdd);
 
-function newCreateCard(item) {
-  const card = new Card(item, '.elements');
+function createNewCard(item) {
+  const card = new Card(item, '.elements', handleCardClick);
   return card.createCard();
 }
 
@@ -143,15 +148,16 @@ function cardAdd(event) {
     name: placeInput.value,
     link: linkInput.value
   };
-  newCreateCard(newCard);
-  template.prepend(newCreateCard(newCard));
+
+  createNewCard(newCard);
+  section.prepend(createNewCard(newCard));
 
   closePopup(popupAddOpen);
 }
 
 saveAddForm.addEventListener('submit', cardAdd);
 
-const popupAll = document.querySelectorAll('.popup');
+const popups = document.querySelectorAll('.popup');
 
 function closeByEscape(evt) {
   if (evt.key === 'Escape') {
@@ -160,7 +166,7 @@ function closeByEscape(evt) {
   }
 }
 
-popupAll.forEach(popup => {
+popups.forEach(popup => {
   popup.addEventListener('click', function (event) {
     if (event.target.classList.contains('popup')) {
       closePopup(popup);
