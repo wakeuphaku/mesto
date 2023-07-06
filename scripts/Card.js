@@ -33,17 +33,6 @@ export class Card {
     });
   }
 
-  // _openPopupCard() {
-  //   const cardPhoto = this._element.querySelector('.element__photo');
-
-  //   cardPhoto.addEventListener('click', () => {
-  //     this._openPopupImage(popupImage);
-  //     popupImagePhoto.src = cardPhoto.src;
-  //     popupImagePhoto.alt = cardPhoto.alt;
-  //     popupImageText.textContent = cardPhoto.alt;
-  //   });
-  // }
-
   _setEventListeners() {
     this._handleTrashButton();
     this._handleLikeButton();
