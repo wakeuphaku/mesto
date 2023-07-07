@@ -45,7 +45,7 @@ export class Card {
   createCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
-    this._cardImage = this._element.querySelector('.element__photo');
+
     this._cardTitle = this._element.querySelector('.element__text');
 
     this._cardImage.src = this.link;
