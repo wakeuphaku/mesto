@@ -1,15 +1,16 @@
-export default class UserInfo {
-  constructor(nameElement, hobbyElement) {
-    this._nameElement = document.querySelector(nameElement);
-    this._hobbyElement = document.querySelector(hobbyElement);
+export class UserInfo {
+  constructor(name, hobby) {
+    this._nameElement = document.querySelector(name);
+    this._hobbyElement = document.querySelector(hobby);
   }
   getUserInfo() {
-    const userName = this._nameElement.textContent;
-    const userHobby = this._hobbyElement.textContent;
-    return { userName, userHobby };
+    return {
+      name: this._nameElement.textContent,
+      hobby: this._hobbyElement.textContent
+    };
   }
-  setUserInfo(userName, userHobby) {
-    this._nameElement = userName;
-    this._hobbyElement = userHobby;
+  setUserInfo({ name, hobby }) {
+    this._nameElement.textContent = name;
+    this._hobbyElement.textContent = hobby;
   }
 }
