@@ -75,7 +75,7 @@ const section = new Section(
   },
   '.elements'
 );
-section.renderer();
+section.renderItems();
 
 addButton.addEventListener('click', function () {
   addFormCard.open();
