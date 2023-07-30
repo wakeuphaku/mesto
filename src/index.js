@@ -18,6 +18,7 @@ import { Section } from './scripts/Section.js';
 import { PopupWithForm } from './scripts/PopupWithForm.js';
 import { UserInfo } from './scripts/UserInfo.js';
 import { PopupWithImage } from './scripts/PopupWithImage.js';
+import { Api } from './scripts/Api.js';
 
 const classNames = {
   formSelector: '.popup__form',
@@ -63,6 +64,14 @@ const inputHobby = document.querySelector('#hobby-input');
 const avatarProfile = document.querySelector('.profile__avatar');
 
 avatarProfile.src = avatar;
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-72',
+  headers: {
+    authorization: 'b176578c-765a-482e-945d-4755e5874088',
+    'Content-Type': 'application/json'
+  }
+});
 
 const userInfo = new UserInfo('.profile-info__name', '.profile-info__hobby');
 
@@ -134,3 +143,19 @@ editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(classNames, addForm);
 addFormValidator.enableValidation();
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-72/users/me', {
+  method: 'PATCH',
+  headers: {
+    authorization: 'b176578c-765a-482e-945d-4755e5874088',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'Marie Skłodowska Curie',
+    about: 'Physicist and Chemist'
+  })
+})
+  .then(res => res.json())
+  .then(result => {
+    console.log(result);
+  });
