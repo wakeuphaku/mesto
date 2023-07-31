@@ -28,32 +28,7 @@ const classNames = {
   errorClass: 'popup__input-error_active'
 };
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+
 
 const editForm = document.querySelector('.popup-edit__form');
 const addForm = document.querySelector('.popup-add__form');
@@ -64,6 +39,7 @@ const inputHobby = document.querySelector('#hobby-input');
 const avatarProfile = document.querySelector('.profile__avatar');
 const userName = document.querySelector('.profile-info__name')
 const userHobby = document.querySelector('.profile-info__hobby')
+const userAvatar = document.querySelector('.profile__avatar')
 
 avatarProfile.src = avatar;
 
@@ -75,7 +51,11 @@ const api = new Api({
   }
 });
 
-const userInfo = new UserInfo('.profile-info__name', '.profile-info__hobby');
+const userInfo = new UserInfo({
+  name: '.profile-info__name',
+  hobby: '.profile-info__hobby',
+  avatar: '.profile__avatar'
+});
 
 const user = await Promise.all([
   api
@@ -84,13 +64,24 @@ const user = await Promise.all([
       console.log(err);
     })
 ])
-
 userInfo.setUserInfo(user)
-console.log(user)
+
+//idk(
+userHobby.textContent = user[0].about
+userName.textContent = user[0].name
+userAvatar.src = user[0].avatar
+
+const initialCards = await Promise.all([
+  api
+    .getCards()
+    .catch((err) => {
+      console.log(err);
+    })
+])
 
 const section = new Section(
   {
-    items: initialCards,
+    items: initialCards[0],
     renderer: item => {
       section.addItem(createCard(item));
     }
@@ -113,17 +104,28 @@ const addFormCard = new PopupWithForm('.popup-add', items => {
   addFormValidator.disableButton();
   addForm.reset();
   addFormCard.close();
+
 });
+
 
 addFormCard.setEventListeners();
 
 const editFormProfile = new PopupWithForm('.popup-edit', items => {
-  userInfo.setUserInfo({
-    name: items.name,
-    hobby: items.hobby
-  });
+  api
+    .editProfile(items).catch((err) => {
+      console.log(err)
+    });
+  api
+    .userInfo().then((items) => {
+      userInfo.setUserInfo(items)
+      editFormProfile.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+
   editFormValidator.disableButton();
-  editFormProfile.close();
+
 });
 
 editButton.addEventListener('click', function () {
