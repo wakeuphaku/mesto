@@ -75,6 +75,14 @@ const api = new Api({
 
 const userInfo = new UserInfo('.profile-info__name', '.profile-info__hobby');
 
+const user = await Promise.all([
+  api.userInfo().catch((err) => {
+    console.log(err);
+  })
+])
+
+userInfo.setUserInfo(user)
+
 const section = new Section(
   {
     items: initialCards,
@@ -143,19 +151,3 @@ editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(classNames, addForm);
 addFormValidator.enableValidation();
-
-fetch('https://mesto.nomoreparties.co/v1/cohort-72/users/me', {
-  method: 'PATCH',
-  headers: {
-    authorization: 'b176578c-765a-482e-945d-4755e5874088',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    name: 'Marie Skłodowska Curie',
-    about: 'Physicist and Chemist'
-  })
-})
-  .then(res => res.json())
-  .then(result => {
-    console.log(result);
-  });

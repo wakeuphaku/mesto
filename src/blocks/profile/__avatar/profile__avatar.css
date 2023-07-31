@@ -6,3 +6,11 @@
   object-fit: cover;
   border-radius: 50%;
 }
+.profile__avatar:hover {
+  background-image: url('/src/images/edit-avatar.svg');
+  opacity: 0.2;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
