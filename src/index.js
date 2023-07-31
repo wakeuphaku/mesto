@@ -62,6 +62,8 @@ const editButton = document.querySelector('.profile-info__edit-button');
 const inputName = document.querySelector('#name-input');
 const inputHobby = document.querySelector('#hobby-input');
 const avatarProfile = document.querySelector('.profile__avatar');
+const userName = document.querySelector('.profile-info__name')
+const userHobby = document.querySelector('.profile-info__hobby')
 
 avatarProfile.src = avatar;
 
@@ -76,12 +78,15 @@ const api = new Api({
 const userInfo = new UserInfo('.profile-info__name', '.profile-info__hobby');
 
 const user = await Promise.all([
-  api.userInfo().catch((err) => {
-    console.log(err);
-  })
+  api
+    .userInfo()
+    .catch((err) => {
+      console.log(err);
+    })
 ])
 
 userInfo.setUserInfo(user)
+console.log(user)
 
 const section = new Section(
   {

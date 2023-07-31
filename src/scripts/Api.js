@@ -1,22 +1,24 @@
 export class Api {
   constructor(options) {
     this.baseUrl = options.baseUrl;
-    this.headers = options.headers;
+    this.token = options.token
+
   }
-  _response(res) {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Ошибка: ${res.status}`);
-    }
-  }
+
   userInfo() {
-    return fetch(`${this.baseUrl}/users/me`, {
+    return fetch('https://nomoreparties.co/v1/cohort-72/users/me', {
       headers: {
-        authorization: this.headers
+        authorization: 'b176578c-765a-482e-945d-4755e5874088'
       }
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
 
-    }).then(this._response);
+        // если ошибка, отклоняем промис
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   }
-}
 
+}
