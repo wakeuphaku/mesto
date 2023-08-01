@@ -95,11 +95,14 @@ addButton.addEventListener('click', function () {
 });
 
 const addFormCard = new PopupWithForm('.popup-add', items => {
-  const card = {
-    name: items.place,
-    link: items.link
-  };
-  const newCard = createCard(card);
+  api.getNewCard(items)
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  const newCard = createCard(items);
   section.addItem(newCard);
   addFormValidator.disableButton();
   addForm.reset();
@@ -112,7 +115,8 @@ addFormCard.setEventListeners();
 
 const editFormProfile = new PopupWithForm('.popup-edit', items => {
   api
-    .editProfile(items).catch((err) => {
+    .editProfile(items)
+    .catch((err) => {
       console.log(err)
     });
   api
@@ -127,6 +131,8 @@ const editFormProfile = new PopupWithForm('.popup-edit', items => {
   editFormValidator.disableButton();
 
 });
+
+
 
 editButton.addEventListener('click', function () {
   editFormProfile.open();
