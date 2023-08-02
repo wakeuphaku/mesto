@@ -29,7 +29,7 @@ export class Card {
     this._cardImage.src = this.link;
     this._cardImage.alt = this.name;
     this._cardTitle.textContent = this.name;
-    this._likeCounter.textContent = this.likes
+    this._likeCounter.textContent = this.likes.length
 
     return this._element;
   }
