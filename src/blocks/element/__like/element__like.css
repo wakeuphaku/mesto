@@ -2,14 +2,13 @@
   background-image: url(../../../images/like.svg);
   width: 22px;
   height: 19px;
-  margin-right: 20px;
+
   border: none;
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: 22px 19px;
   background-position: center;
   cursor: pointer;
-  margin-bottom: 25px;
 }
 .element__like:hover {
   opacity: 0.5;

@@ -1,12 +1,12 @@
 import './styles/index.css';
 
-// теперь картинки можно импортировать,
-// вебпак добавит в переменные правильные пути
+// теперь картинки можно импортировать, 
+// вебпак добавит в переменные правильные пути 
 const avatar = new URL('../src/images/Avatar.png', import.meta.url);
 const mgu = new URL('../src/images/mgu.jpg', import.meta.url);
 
 const photos = [
-  // меняем исходные пути на переменные
+  // меняем исходные пути на переменные 
   { name: 'avatar', link: avatar },
   { name: 'mgu', link: mgu }
 ];
@@ -14,11 +14,10 @@ const photos = [
 import { Card } from './scripts/Card.js';
 import { FormValidator } from './scripts/FormValidator.js';
 import { Section } from './scripts/Section.js';
-
+import { Api } from './scripts/Api.js'
 import { PopupWithForm } from './scripts/PopupWithForm.js';
 import { UserInfo } from './scripts/UserInfo.js';
 import { PopupWithImage } from './scripts/PopupWithImage.js';
-import { Api } from './scripts/Api.js';
 
 const classNames = {
   formSelector: '.popup__form',
@@ -37,51 +36,44 @@ const editButton = document.querySelector('.profile-info__edit-button');
 const inputName = document.querySelector('#name-input');
 const inputHobby = document.querySelector('#hobby-input');
 const avatarProfile = document.querySelector('.profile__avatar');
-const userName = document.querySelector('.profile-info__name')
-const userHobby = document.querySelector('.profile-info__hobby')
-const userAvatar = document.querySelector('.profile__avatar')
 
 avatarProfile.src = avatar;
 
+// API
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-72',
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-42',
   headers: {
-    authorization: 'b176578c-765a-482e-945d-4755e5874088',
+    authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6',
     'Content-Type': 'application/json'
   }
 });
 
-const userInfo = new UserInfo({
-  name: '.profile-info__name',
-  hobby: '.profile-info__hobby',
-  avatar: '.profile__avatar'
+// Получение данных
+const userPromise = await Promise.all([
+  api.userInfo()
+    .catch((err) => {
+      console.log(err);
+    }),
+]);
+
+const cardPromise = await Promise.all([
+  api.getCards()
+    .catch((err) => {
+      console.log(err);
+    }),
+]);
+
+// Применение данных
+const userInfo = new UserInfo('.profile-info__name', '.profile-info__hobby')
+
+userInfo.setUserInfo({
+  name: userPromise[0].name,
+  hobby: userPromise[0].about
 });
-
-const user = await Promise.all([
-  api
-    .userInfo()
-    .catch((err) => {
-      console.log(err);
-    })
-])
-userInfo.setUserInfo(user)
-
-//idk(
-userHobby.textContent = user[0].about
-userName.textContent = user[0].name
-userAvatar.src = user[0].avatar
-
-const initialCards = await Promise.all([
-  api
-    .getCards()
-    .catch((err) => {
-      console.log(err);
-    })
-])
 
 const section = new Section(
   {
-    items: initialCards[0],
+    items: cardPromise[0],
     renderer: item => {
       section.addItem(createCard(item));
     }
@@ -90,49 +82,22 @@ const section = new Section(
 );
 section.renderItems();
 
-addButton.addEventListener('click', function () {
-  addFormCard.open();
-});
-
-const addFormCard = new PopupWithForm('.popup-add', items => {
-  api.getNewCard(items)
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-  const newCard = createCard(items);
-  section.addItem(newCard);
-  addFormValidator.disableButton();
-  addForm.reset();
-  addFormCard.close();
-
-});
-
-
-addFormCard.setEventListeners();
-
+// Редактирование профиля
 const editFormProfile = new PopupWithForm('.popup-edit', items => {
-  api
-    .editProfile(items)
+  api.editProfile(items)
+    .then((items) => {
+      console.log(items)
+      userInfo.setUserInfo({
+        name: items.name,
+        hobby: items.about
+      })
+    })
     .catch((err) => {
       console.log(err)
-    });
-  api
-    .userInfo().then((items) => {
-      userInfo.setUserInfo(items)
-      editFormProfile.close();
     })
-    .catch((err) => {
-      console.log(err);
-    })
-
+  editFormProfile.close();
   editFormValidator.disableButton();
-
 });
-
-
 
 editButton.addEventListener('click', function () {
   editFormProfile.open();
@@ -142,8 +107,28 @@ editButton.addEventListener('click', function () {
   inputName.value = values.name;
   inputHobby.value = values.hobby;
 });
-
 editFormProfile.setEventListeners();
+
+// Добавление новой карточки
+addButton.addEventListener('click', function () {
+  addFormCard.open();
+});
+
+const addFormCard = new PopupWithForm('.popup-add', items => {
+  api.getNewCard(items)
+    .then((items) => {
+      console.log(items)
+      const newCard = createCard(items);
+      section.addItem(newCard);
+      addFormValidator.disableButton();
+      addForm.reset();
+      addFormCard.close();
+    }).catch((err) =>
+      console.log(err))
+});
+
+addFormCard.setEventListeners();
+
 
 const imagePopup = new PopupWithImage('.popup-image');
 
@@ -163,4 +148,4 @@ const editFormValidator = new FormValidator(classNames, editForm);
 editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(classNames, addForm);
-addFormValidator.enableValidation();
+addFormValidator.enableValidation(); 

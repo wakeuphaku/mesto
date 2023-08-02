@@ -3,6 +3,7 @@ export class Card {
     this._templateSelector = templateSelector;
     this.name = card.name;
     this.link = card.link;
+    this.likes = card.likes;
     this._handleCardClick = handleCardClick;
   }
 
@@ -21,12 +22,14 @@ export class Card {
     this._cardTitle = this._element.querySelector('.element__text');
     this._cardTrash = this._element.querySelector('.element__trash');
     this._cardImage = this._element.querySelector('.element__photo');
+    this._likeCounter = this._element.querySelector('.element__like_counter')
 
     this._setEventListeners();
 
     this._cardImage.src = this.link;
     this._cardImage.alt = this.name;
     this._cardTitle.textContent = this.name;
+    this._likeCounter.textContent = this.likes
 
     return this._element;
   }
