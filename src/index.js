@@ -18,6 +18,7 @@ import { Api } from './scripts/Api.js'
 import { PopupWithForm } from './scripts/PopupWithForm.js';
 import { UserInfo } from './scripts/UserInfo.js';
 import { PopupWithImage } from './scripts/PopupWithImage.js';
+import { PopupWithConfirm } from './scripts/PopupWithConfirm';
 
 const classNames = {
   formSelector: '.popup__form',
@@ -36,6 +37,7 @@ const editButton = document.querySelector('.profile-info__edit-button');
 const inputName = document.querySelector('#name-input');
 const inputHobby = document.querySelector('#hobby-input');
 const avatarProfile = document.querySelector('.profile__avatar');
+const trashButton = document.querySelector('.element__trash')
 
 avatarProfile.src = avatar;
 
@@ -65,6 +67,7 @@ const cardPromise = await Promise.all([
 
 // Применение данных
 const userInfo = new UserInfo('.profile-info__name', '.profile-info__hobby')
+const userId = userInfo._id
 
 userInfo.setUserInfo({
   name: userPromise[0].name,
@@ -126,10 +129,22 @@ const addFormCard = new PopupWithForm('.popup-add', items => {
     }).catch((err) =>
       console.log(err))
 });
-
 addFormCard.setEventListeners();
 
+const confirmPopup = new PopupWithConfirm('.popup-confirm', (cardId, card) => {
 
+  api.deleteCard(cardId)
+    .then(() => {
+      card.deleteCard()
+      confirmPopup.close()
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+})
+confirmPopup.setEventListeners();
+
+// Попапы
 const imagePopup = new PopupWithImage('.popup-image');
 
 imagePopup.setEventListeners();
@@ -138,8 +153,11 @@ function handleCardClick(place, link) {
   imagePopup.open({ place, link });
 }
 
+
 function createCard(item) {
-  const card = new Card(item, '.elements', handleCardClick);
+  const card = new Card(item, '.elements', userId, handleCardClick, () => {
+    confirmPopup.open(card._id, card)
+  });
   const cardElement = card.createCard();
   return cardElement;
 }

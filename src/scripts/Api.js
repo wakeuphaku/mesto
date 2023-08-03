@@ -77,5 +77,52 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       });
   }
+  deleteCard(_id) {
+    return fetch(`https://mesto.nomoreparties.co/v1/cohort-72/cards/${_id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: 'b176578c-765a-482e-945d-4755e5874088'
+      }
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
 
+        // если ошибка, отклоняем промис
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  }
+  getLike() {
+    return fetch(`https://mesto.nomoreparties.co/v1/cohort-72/cards/${_id}/likes`, {
+      method: 'PUT',
+      headers: {
+        authorization: 'b176578c-765a-482e-945d-4755e5874088'
+      }
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        // если ошибка, отклоняем промис
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  }
+  deleteLike() {
+    return fetch(`https://mesto.nomoreparties.co/v1/cohort-72/cards/${_id}/likes`, {
+      method: 'DELETE',
+      headers: {
+        authorization: 'b176578c-765a-482e-945d-4755e5874088'
+      }
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        // если ошибка, отклоняем промис
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  }
 }
