@@ -93,7 +93,7 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       });
   }
-  getLike() {
+  getLike(_id) {
     return fetch(`https://mesto.nomoreparties.co/v1/cohort-72/cards/${_id}/likes`, {
       method: 'PUT',
       headers: {
@@ -109,7 +109,7 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       });
   }
-  deleteLike() {
+  deleteLike(_id) {
     return fetch(`https://mesto.nomoreparties.co/v1/cohort-72/cards/${_id}/likes`, {
       method: 'DELETE',
       headers: {

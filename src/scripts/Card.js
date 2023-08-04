@@ -1,7 +1,7 @@
 
 
 export class Card {
-  constructor(card, templateSelector, userId, handleCardClick, handleDeleteClick) {
+  constructor(card, templateSelector, userId, handleCardClick, handleDeleteClick, handleLikeClick) {
     this._templateSelector = templateSelector;
     this.name = card.name;
     this.link = card.link;
@@ -10,6 +10,7 @@ export class Card {
     this.userId = userId;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeClick = handleLikeClick
   }
 
   _getTemplate() {
@@ -44,8 +45,18 @@ export class Card {
     this._element = null;
   }
 
+  likeCard(likeCounter) {
+    this._likeCounter.textContent = likeCounter
+  }
+
   _handleLikeButton() {
+    this._handleLikeClick(
+      this.likes,
+      this._id
+    );
     this._cardLike.classList.toggle('element__like_active');
+    this.likes = !this.likes;
+
   }
 
   _setEventListeners() {

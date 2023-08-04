@@ -157,11 +157,24 @@ function handleCardClick(place, link) {
 function createCard(item) {
   const card = new Card(item, '.elements', userId, handleCardClick, () => {
     confirmPopup.open(card._id, card)
-  });
+  }, () => {
+    api.getLike(card._id).then(() => {
+      card._handleLikeButton()
+    })
+  },
+    (liked, cardId) => {
+      liked ? api.getLike(cardId) : api.deleteLike(cardId)
+        .then((items) => {
+          card.likeCard(items.likes.length)
+        }).catch((err) => {
+          console.log(err)
+        })
+    })
   const cardElement = card.createCard();
   return cardElement;
 }
 
+// Валидация
 const editFormValidator = new FormValidator(classNames, editForm);
 editFormValidator.enableValidation();
 
