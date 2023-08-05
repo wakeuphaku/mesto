@@ -5,12 +5,13 @@
   height: 120px;
   object-fit: cover;
   border-radius: 50%;
+  cursor: pointer;
+  object-fit: contain;
+  background: none;
+  background-position: center center;
+  background-size: 26px 26px;
+  background-repeat: no-repeat;
 }
 .profile__avatar:hover {
-  background-image: url('/src/images/edit-avatar.svg');
-  opacity: 0.2;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background-image: url('../../../images/edit-avatar.svg');
 }
