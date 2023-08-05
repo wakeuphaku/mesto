@@ -37,28 +37,46 @@ export class Card {
     this._cardImage.alt = this.name;
     this._cardTitle.textContent = this.name;
     this._likeCounter.textContent = this.likes.length;
-
+    this._checkLikeState()
     this._showTrashButton();
     this._setEventListeners();
 
     return this._element;
   }
 
-
+  likedCard() {
+    this._cardLike.classList.add('element__like_active')
+  }
+  unlikedCard() {
+    this._cardLike.classList.remove('element__like_active')
+  }
 
   deleteCard() {
     this._element.remove();
     this._element = null;
   }
 
+  likesCount(likeCount) {
+    this._likeCounter.textContent = likeCount;
+  }
+
+  _checkLikeState() {
+    this.likes.forEach((item) => {
+      if (this.userId === item._id) {
+        this.likedCard();
+        this._liked = true;
+
+      }
+    });
+  }
+
   _handleLikeButton() {
     this._handleLikeClick(
       this.liked,
-      this._id,
-      this._likeCounter
+      this._id
     );
     this._cardLike.classList.toggle('element__like_active')
-    this.liked = !this.liked;
+
 
   }
 
