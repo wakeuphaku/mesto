@@ -9,7 +9,7 @@ export class UserInfo {
   getUserInfo() {
     return {
       name: this._nameElement.textContent,
-      hobby: this._hobbyElement.textContent
+      about: this._hobbyElement.textContent
 
     };
   }

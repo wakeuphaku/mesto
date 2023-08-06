@@ -13,6 +13,7 @@ import { classNames, editForm, addForm, avatarForm, addButton, editButton, input
 
 
 
+
 function changeButtonToSaving(popup) {
   popup.submitButton.textContent = 'Сохранение...';
 }
@@ -189,6 +190,7 @@ function createCard(item) {
 // Валидация
 const avatarPopupValidator = new FormValidator(classNames, avatarForm);
 avatarPopupValidator.enableValidation();
+
 
 const editFormValidator = new FormValidator(classNames, editForm);
 editFormValidator.enableValidation();

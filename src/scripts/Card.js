@@ -12,7 +12,7 @@ export class Card {
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
     this._handleLikeClick = handleLikeClick;
-    this._liked = false;
+    this._isLiked = false;
   }
 
   _getTemplate() {
@@ -37,7 +37,7 @@ export class Card {
     this._cardImage.alt = this.name;
     this._cardTitle.textContent = this.name;
     this._likeCounter.textContent = this.likes.length;
-    this._checkLikeState()
+    this._checkLikes()
     this._showTrashButton();
     this._setEventListeners();
 
@@ -60,24 +60,24 @@ export class Card {
     this._likeCounter.textContent = likeCount;
   }
 
-  _checkLikeState() {
+  _checkLikes() {
     this.likes.forEach((item) => {
       if (this.userId === item._id) {
         this.likedCard();
-        this._liked = true;
-
+        this._isLiked = true;
       }
+
     });
   }
 
   _handleLikeButton() {
     this._handleLikeClick(
-      this.liked,
-      this._id
+      this._isLiked,
+      this._id,
+      this._elementLikes
     );
-    this._cardLike.classList.toggle('element__like_active')
-
-
+    this._cardLike.classList.toggle("element__like_active");
+    this._isLiked = !this._isLiked;
   }
 
   _showTrashButton() {
