@@ -75,7 +75,7 @@ export class Card {
       this._id
     );
     this._cardLike.classList.toggle("element__like_active");
-
+    this._isLiked = !this._isLiked;
   }
 
   _showTrashButton() {
