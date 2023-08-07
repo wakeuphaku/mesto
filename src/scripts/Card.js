@@ -66,18 +66,16 @@ export class Card {
         this.likedCard();
         this._isLiked = true;
       }
-
     });
   }
 
   _handleLikeButton() {
     this._handleLikeClick(
       this._isLiked,
-      this._id,
-      this._elementLikes
+      this._id
     );
     this._cardLike.classList.toggle("element__like_active");
-    this._isLiked = !this._isLiked;
+
   }
 
   _showTrashButton() {

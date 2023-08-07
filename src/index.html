@@ -132,14 +132,14 @@
         <form class="popup__form popup-avatar__form" name="editAvatar" novalidate>
           <div class="popup__form-block">
             <input
+              class="popup__input popup__input_text-avatar"
+              type="url"
+              name="avatar"
               id="avatar-input"
               required
               placeholder="Ссылка на картинку"
-              name="link"
-              type="url"
-              class="popup__input popup__input_text-avatar"
             />
-            <span class="popup__input-error link-input-error"></span>
+            <span class="popup__input-error avatar-input-error"></span>
           </div>
 
           <button type="submit" class="popup__button popup-avatar__button">Сохранить</button>
