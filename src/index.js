@@ -76,6 +76,7 @@ const editFormProfile = new PopupWithForm('.popup-edit', items => {
         about: items.about,
         avatar: items.avatar
       })
+      editFormProfile.close();
     })
     .catch((err) => {
       console.log(err)
@@ -83,7 +84,7 @@ const editFormProfile = new PopupWithForm('.popup-edit', items => {
     .finally(() => {
       changeButtonToSave(editFormProfile)
     })
-  editFormProfile.close();
+
   editFormValidator.disableButton();
 });
 
@@ -177,12 +178,17 @@ function createCard(item) {
         api.deleteLike(cardId)
           .then((items) => {
             card.likesCount(items.likes.length)
-
+            card.unlikedCard()
+          }).catch((err) => {
+            console.log(err)
           })
       } else {
         api.getLike(cardId)
           .then((items) => {
             card.likesCount(items.likes.length)
+            card.likedCard()
+          }).catch((err) => {
+            console.log(err)
           })
       }
     })
